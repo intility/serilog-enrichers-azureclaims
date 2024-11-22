@@ -92,6 +92,35 @@ public class BaseEnricherTests
         Assert.True(logEvent.Properties.ContainsKey(_testProperty));
         Assert.Equal(logEvent.Properties[_testProperty], logEventProperty.Value);
     }
+
+    [Fact]
+    public void Enrich_ShouldReturn_WhenUserIsNotLoggedIn()
+    {
+        // Arrange
+        var httpContextAccessorMock = Substitute.For<IHttpContextAccessor>();
+        var user = new ClaimsPrincipal(TestClaimsProvider.ValidClaims().GetNotAuthenticatedClaimsPrincipal());
+
+        httpContextAccessorMock.HttpContext.Returns(new DefaultHttpContext
+        {
+            User = user
+        });
+
+        var customClaimEnricher = new TestEnricher(httpContextAccessorMock, _testKey, _testProperty);
+        var logEvent = new LogEvent(
+            DateTimeOffset.Now,
+            LogEventLevel.Information,
+            null,
+            new MessageTemplate([]), []
+        );
+
+        var propertyFactory = Substitute.For<ILogEventPropertyFactory>();
+
+        // Act
+        customClaimEnricher.Enrich(logEvent, propertyFactory);
+
+        // Assert
+        Assert.Empty(logEvent.Properties);
+    }
 }
 
 internal class TestEnricher : BaseEnricher
