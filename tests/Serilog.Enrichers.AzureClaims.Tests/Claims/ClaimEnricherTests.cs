@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NSubstitute;
+using Serilog.Core;
 using Serilog.Enrichers.AzureClaims.Tests.Helpers;
+using Serilog.Enrichers.Claims;
 using Serilog.Events;
 using System.Security.Claims;
 using Xunit;
-using Serilog.Enrichers.Claims;
-using Serilog.Core;
-using Serilog.Parsing;
 
 namespace Serilog.Enrichers.AzureClaims.Tests.Claims;
 
@@ -136,8 +135,8 @@ public class ClaimEnricherTests
         var customClaimEnricher = new ClaimEnricher(httpContextAccessorMock, _customClaimType, _customClaimPropertyName);
         var logEvent = new LogEvent(
             DateTimeOffset.Now,
-            LogEventLevel.Information, 
-            null, 
+            LogEventLevel.Information,
+            null,
             new MessageTemplate([]), []
         );
 
@@ -213,4 +212,5 @@ public class ClaimEnricherTests
         // Assert
         Assert.Empty(logEvent.Properties);
     }
+
 }
