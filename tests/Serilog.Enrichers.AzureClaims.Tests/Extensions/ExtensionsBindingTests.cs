@@ -25,6 +25,7 @@ namespace Serilog.Enrichers.AzureClaims.Tests.Extensions
                 .Enrich.WithTenantId()
                 .Enrich.WithObjectId()
                 .Enrich.WithDisplayName()
+                .Enrich.WithCustomClaim("test")
                 .WriteTo.Sink(new DelegatingSink(e => evt = e))
                 .CreateLogger();
 
@@ -43,7 +44,8 @@ namespace Serilog.Enrichers.AzureClaims.Tests.Extensions
                 item => Assert.Equal(nameof(AppIdEnricher), item.GetType().Name),
                 item => Assert.Equal(nameof(TenantIdEnricher), item.GetType().Name),
                 item => Assert.Equal(nameof(ObjectIdEnricher), item.GetType().Name),
-                item => Assert.Equal(nameof(DisplayNameEnricher), item.GetType().Name));
+                item => Assert.Equal(nameof(DisplayNameEnricher), item.GetType().Name),
+                item => Assert.Equal(nameof(CustomClaimEnricher), item.GetType().Name));
         }
 
         // Method to count the number of enrichers in the project. Ignores the base enricher
@@ -166,6 +168,28 @@ namespace Serilog.Enrichers.AzureClaims.Tests.Extensions
             var enricher = aggregateEnricher.GetType();
 
             Assert.Equal(nameof(ObjectIdEnricher), enricher.Name);
+        }
+
+        [Fact]
+        public void CustomClaimEnricher_IsAddedToTheBuilder()
+        {
+            // Arrange
+            var httpContextAccessorMock = Substitute.For<IHttpContextAccessor>();
+            httpContextAccessorMock.HttpContext.Returns(new DefaultHttpContext());
+
+            LogEvent evt = null;
+            var log = new LoggerConfiguration()
+                .Enrich.WithCustomClaim("test")
+                .WriteTo.Sink(new DelegatingSink(e => evt = e))
+                .CreateLogger();
+
+            var aggregateEnricherFieldInfo = log.GetType()
+                .GetField("_enricher", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            var aggregateEnricher = aggregateEnricherFieldInfo?.GetValue(log);
+            var enricher = aggregateEnricher.GetType();
+
+            Assert.Equal(nameof(CustomClaimEnricher), enricher.Name);
         }
     }
 }
