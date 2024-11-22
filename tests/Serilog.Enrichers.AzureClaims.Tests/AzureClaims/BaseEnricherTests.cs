@@ -2,11 +2,11 @@
 using Microsoft.Identity.Web;
 using NSubstitute;
 using Serilog.Core;
+using Serilog.Enrichers.AzureClaims;
 using Serilog.Enrichers.AzureClaims.Tests.Helpers;
 using Serilog.Events;
 using System.Security.Claims;
 using Xunit;
-using Serilog.Enrichers.Shared;
 
 namespace Serilog.Enrichers.Tests.AzureClaims;
 
