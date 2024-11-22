@@ -21,6 +21,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageIcon>serilog-enricher-nuget.png</PackageIcon>
     <PackageIconUrl>https://cdn.jsdelivr.net/gh/serilog-contrib/brand/logo/enricher/serilog-enricher-nuget.png</PackageIconUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,12 +31,10 @@
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
-  
-  <ItemGroup>
+    <None Include="../../LICENSE" Pack="true" PackagePath="\" />
     <None Include="../../assets/serilog-enricher-nuget.png" Pack="true" Visible="false" PackagePath="\" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <InternalsVisibleTo Include="Serilog.Enrichers.Tests" />
   </ItemGroup>
