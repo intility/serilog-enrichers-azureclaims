@@ -8,7 +8,7 @@ namespace Serilog.Enrichers.Shared;
 /// <summary>
 /// Represents a base class for log event enrichers.
 /// </summary>
-internal abstract class BaseEnricher : ILogEventEnricher
+public abstract class BaseEnricher : ILogEventEnricher
 {
     /// <summary>
     /// The unknown value to be used when the property value is not available.

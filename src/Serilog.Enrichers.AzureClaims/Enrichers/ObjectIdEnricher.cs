@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Identity.Web;
+using Serilog.Enrichers.Shared;
 using System.Security.Claims;
 
 namespace Serilog.Enrichers.AzureClaims;

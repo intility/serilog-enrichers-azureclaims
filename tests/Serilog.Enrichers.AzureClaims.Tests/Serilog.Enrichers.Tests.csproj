@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Serilog.Enrichers.AzureClaims\Serilog.Enrichers.AzureClaims.csproj" />
+    <ProjectReference Include="..\..\src\Serilog.Enrichers.Claims\Serilog.Enrichers.Claims.csproj" />
   </ItemGroup>
 
 </Project>
