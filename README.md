@@ -1,4 +1,4 @@
-# Serilog.Enrichers.AzureClaims
+# Serilog.Enrichers.AzureClaims and Serilog.Enrichers.Claims
 Enriches Serilog events with information from the ClaimsPrincipal.
 
 [![Build_and_Test](https://github.com/Intility/serilog-enrichers-azureclaims/actions/workflows/Build_and_Test.yml/badge.svg)](https://github.com/Intility/serilog-enrichers-azureclaims/actions/workflows/Build_and_Test.yml)
@@ -8,10 +8,15 @@ Enriches Serilog events with information from the ClaimsPrincipal.
 ![Nuget](https://img.shields.io/nuget/v/Serilog.Enrichers.AzureClaims?label=Serilog.Enrichers.AzureClaims)
 ![Nuget](https://img.shields.io/nuget/dt/Serilog.Enrichers.AzureClaims?logo=nuget&label=Downloads)
 
-Install the _Serilog.Enrichers.AzureClaims_ [NuGet package](https://www.nuget.org/packages/Serilog.Enrichers.AzureClaims/)
+![Nuget](https://img.shields.io/nuget/v/Serilog.Enrichers.Claims?label=Serilog.Enrichers.Claims)
+![Nuget](https://img.shields.io/nuget/dt/Serilog.Enrichers.Claims?logo=nuget&label=Downloads)
+
+Install the _Serilog.Enrichers.AzureClaims_ [NuGet package](https://www.nuget.org/packages/Serilog.Enrichers.AzureClaims/)  
+Install the _Serilog.Enrichers.Claims_ [NuGet package](https://www.nuget.org/packages/Serilog.Enrichers.Claims/)
 
 ```powershell
 Install-Package Serilog.Enrichers.AzureClaims
+Install-Package Serilog.Enrichers.Claims
 ```
 
 Then, apply the enricher to your `LoggerConfiguration`:
@@ -23,6 +28,7 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.WithTenantId()
     .Enrich.WithObjectId()
     .Enrich.WithAppId()
+    .Enrich.WithCustomClaim("AnyExistingClaim")
     // ...other configuration...
     .CreateLogger();
 ```
@@ -36,10 +42,11 @@ The package includes:
  * `WithDisplayName()` - adds `DisplayName` based on the ClaimType `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` or `name` or `preferred_username`
  * `WithTenantId()` - adds `TenantId` based on the ClaimType `http://schemas.microsoft.com/identity/claims/tenantid` or `tid` 
  * `WithObjectId()` - adds `ObjectId` based on the ClaimType `http://schemas.microsoft.com/identity/claims/objectidentifier` or `oid`
- * `WithAppId` - adds `AppId` based on the CLaimType `appid` or `azp` 
+ * `WithAppId()` - adds `AppId` based on the CLaimType `appid` or `azp` 
+ * `WithCustomClaim("AnyExistingClaim")` based on the claim you want to extract from the ClaimsPrincipal
 
 ## Installing into an ASP.NET Core Web Application
-You need to register the `IHttpContextAccessor` singleton so the enrichers have access to the requests `HttpContext` to extract the data.
+The `IHttpContextAccessor` singleton should be registered, but is not required for these nugets to run. The enrichers have access to the requests `HttpContext` to extract the data.
 This is what your `Program` class should contain in order for this enricher to work as expected:
 
 ```cs
@@ -54,11 +61,8 @@ builder.Logging.AddSerilog(new LoggerConfiguration()
     .Enrich.WithTenantId()
     .Enrich.WithObjectId()
     .Enrich.WithAppId()
+    .Enrich.WithCustomClaim("AnyExistingClaim")
     .CreateLogger());
-
-// ...
-builder.Services.AddHttpContextAccessor();
-// ...
 
 var app = builder.Build();
 app.UseSerilogRequestLogging();
