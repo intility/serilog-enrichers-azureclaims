@@ -92,5 +92,35 @@ namespace Serilog.Enrichers.AzureClaims.Tests
             Assert.True(evt.Properties.ContainsKey("Email"));
             Assert.Equal(TestConstants.EMAIL, evt.Properties["Email"].LiteralValue().ToString());
         }
+
+
+        [Fact]
+        public void LogEvent_ContainCustomClaimWhenUserIsLoggedIn_WithoutCustomPropertyName()
+        {
+            // Arrange
+            var httpContextAccessorMock = Substitute.For<IHttpContextAccessor>();
+            var user = new ClaimsPrincipal(TestClaimsProvider.ValidClaims().GetClaimsPrincipal());
+
+            httpContextAccessorMock.HttpContext.Returns(new DefaultHttpContext
+            {
+                User = user
+            });
+
+            var CustomClaimEnricher = new CustomClaimEnricher(httpContextAccessorMock, _customClaimType);
+
+            LogEvent evt = null;
+            var log = new LoggerConfiguration()
+                .Enrich.With(CustomClaimEnricher)
+                .WriteTo.Sink(new DelegatingSink(e => evt = e))
+                .CreateLogger();
+
+            // Act
+            log.Information(@"Email property is set when the user is logged in");
+
+            // Assert
+            Assert.NotNull(evt);
+            Assert.True(evt.Properties.ContainsKey(_customClaimType));
+            Assert.Equal(TestConstants.EMAIL, evt.Properties[_customClaimType].LiteralValue().ToString());
+        }
     }
 }
