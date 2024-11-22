@@ -13,6 +13,12 @@ public class TestClaimsProvider
         return new ClaimsPrincipal(identity);
     }
 
+    public ClaimsPrincipal GetNotAuthenticatedClaimsPrincipal()
+    {
+        var identity = new ClaimsIdentity();
+        return new ClaimsPrincipal(identity);
+    }
+
     public TestClaimsProvider AddClaim(string type, string value)
     {
         Claims.Add(new Claim(type, value));

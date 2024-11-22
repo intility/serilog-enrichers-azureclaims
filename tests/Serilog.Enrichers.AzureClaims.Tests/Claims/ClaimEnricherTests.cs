@@ -182,4 +182,35 @@ public class ClaimEnricherTests
         // Assert
         Assert.Contains(logEvent.Properties, p => p.Key == _customClaimPropertyName && p.Value.Equals(new ScalarValue("test@example.com")));
     }
+
+
+    [Fact]
+    public void Enrich_ShouldReturn_WhenUserIsNotLoggedIn()
+    {
+        // Arrange
+        var httpContextAccessorMock = Substitute.For<IHttpContextAccessor>();
+        var user = new ClaimsPrincipal(TestClaimsProvider.ValidClaims().GetNotAuthenticatedClaimsPrincipal());
+
+        httpContextAccessorMock.HttpContext.Returns(new DefaultHttpContext
+        {
+            User = user
+        });
+
+
+        var customClaimEnricher = new ClaimEnricher(httpContextAccessorMock, _customClaimType, _customClaimPropertyName);
+        var logEvent = new LogEvent(
+            DateTimeOffset.Now,
+            LogEventLevel.Information,
+            null,
+            new MessageTemplate([]), []
+        );
+
+        var propertyFactory = Substitute.For<ILogEventPropertyFactory>();
+
+        // Act
+        customClaimEnricher.Enrich(logEvent, propertyFactory);
+
+        // Assert
+        Assert.Empty(logEvent.Properties);
+    }
 }
