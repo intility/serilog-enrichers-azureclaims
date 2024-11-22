@@ -3,13 +3,18 @@ using Serilog.Core;
 using Serilog.Events;
 using System.Security.Claims;
 
-namespace Serilog.Enrichers.Shared;
+namespace Serilog.Enrichers.Claims;
 
 /// <summary>
-/// Represents a base class for log event enrichers.
+/// Enriches log events with a custom property from the user's claims.
 /// </summary>
-internal abstract class BaseEnricher : ILogEventEnricher
+internal class ClaimEnricher : ILogEventEnricher
 {
+    /// <summary>
+    /// The custom claimType to be used to find the claim
+    /// </summary>
+    private readonly string _claimType;
+
     /// <summary>
     /// The unknown value to be used when the property value is not available.
     /// </summary>
@@ -30,29 +35,36 @@ internal abstract class BaseEnricher : ILogEventEnricher
     /// </summary>
     protected string _propertyName;
 
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="BaseEnricher"/> class with the specified item key and property name.
+    /// Initializes a new instance of the <see cref="ClaimEnricher"/> class.
     /// </summary>
-    /// <param name="itemKey">The key used for storing the log event property in the HTTP context items.</param>
-    /// <param name="propertyName">The name of the property to be added to the log event.</param>
-    protected BaseEnricher(string itemKey, string propertyName)
+    public ClaimEnricher(string claimType, string? customPropertyName = null)
     {
+        var propertyName = customPropertyName ?? claimType;
+
         _contextAccessor = new HttpContextAccessor();
-        _itemKey = itemKey;
+        _itemKey = $"Serilog_{propertyName}";
+
         _propertyName = propertyName;
+        _claimType = claimType;
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="BaseEnricher"/> class with the specified HTTP context accessor, item key, and property name.
+    /// Initializes a new instance of the <see cref="ClaimEnricher"/> class with the specified HTTP context accessor.
     /// </summary>
-    /// <param name="contextAccessor">The HTTP context accessor used for retrieving the HTTP context.</param>
-    /// <param name="itemKey">The key used for storing the log event property in the HTTP context items.</param>
-    /// <param name="propertyName">The name of the property to be added to the log event.</param>
-    protected BaseEnricher(IHttpContextAccessor contextAccessor, string itemKey, string propertyName)
+    /// <param name="contextAccessor">The HTTP context accessor to use for retrieving the user's claims.</param>
+    /// <param name="claimType">The custom claimType to be used to find the claim</param>
+    /// <param name="customPropertyName">The custom property name to be used in the enriched logs.</param>
+    internal ClaimEnricher(IHttpContextAccessor contextAccessor, string claimType, string? customPropertyName = null)
     {
+        var propertyName = customPropertyName ?? claimType;
+
         _contextAccessor = contextAccessor;
-        _itemKey = itemKey;
+        _itemKey = $"Serilog_{propertyName}";
+
         _propertyName = propertyName;
+        _claimType = claimType;
     }
 
     /// <summary>
@@ -86,9 +98,12 @@ internal abstract class BaseEnricher : ILogEventEnricher
     }
 
     /// <summary>
-    /// Gets the property value to be added to the log event from the specified claims principal.
+    /// Gets the Custom Claim property value from the specified claims principal.
     /// </summary>
     /// <param name="user">The claims principal representing the user.</param>
-    /// <returns>The property value to be added to the log event, or <c>null</c> if it cannot be determined.</returns>
-    protected abstract string? GetPropertyValue(ClaimsPrincipal user);
+    /// <returns>The Custom Claim property value, or <c>null</c> if it cannot be found.</returns>
+    protected string? GetPropertyValue(ClaimsPrincipal user)
+    {
+        return user.FindFirstValue(_claimType);
+    }
 }

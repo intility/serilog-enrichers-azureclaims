@@ -5,15 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  
+
   <PropertyGroup>
-    <AssemblyName>Serilog.Enrichers.AzureClaims</AssemblyName>
-    <title>Serilog.Enrichers.AzureClaims</title>
+    <AssemblyName>Serilog.Enrichers.Claims</AssemblyName>
+    <title>Serilog.Enrichers.Claims</title>
     <authors>Thorstein Løkensgard</authors>
     <owners>Intility</owners>
     <Company>Intility</Company>
-    <description>Enrich Serilog events with properties from Azure Claims.</description>
-    <PackageTags>serilog;enrichers;azure claims;claims</PackageTags>
+    <description>Enrich Serilog events with properties from Claims.</description>
+    <PackageTags>serilog;enrichers;claims;claim</PackageTags>
     <PackageReadMeFile>README.md</PackageReadMeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/Intility/serilog-enrichers-azureclaims</RepositoryUrl>
@@ -31,7 +31,7 @@
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <None Include="../../assets/serilog-enricher-nuget.png" Pack="true" Visible="false" PackagePath="\" />
   </ItemGroup>
@@ -39,5 +39,4 @@
   <ItemGroup>
     <InternalsVisibleTo Include="Serilog.Enrichers.Tests" />
   </ItemGroup>
-
 </Project>
