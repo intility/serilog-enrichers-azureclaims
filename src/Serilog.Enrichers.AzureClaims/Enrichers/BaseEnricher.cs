@@ -3,7 +3,7 @@ using Serilog.Core;
 using Serilog.Events;
 using System.Security.Claims;
 
-namespace Serilog.Enrichers.Shared;
+namespace Serilog.Enrichers.AzureClaims;
 
 /// <summary>
 /// Represents a base class for log event enrichers.

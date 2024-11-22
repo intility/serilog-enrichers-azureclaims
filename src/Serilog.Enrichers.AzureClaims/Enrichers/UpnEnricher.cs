@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Serilog.Enrichers.Shared;
 using System.Security.Claims;
 
 namespace Serilog.Enrichers.AzureClaims;
