@@ -30,7 +30,8 @@ namespace Serilog.Enrichers.AzureClaims.Tests.Helpers
                 .AddClaim(ClaimTypes.Name, TestConstants.NAME)
                 .AddClaim(ClaimConstants.ObjectId, TestConstants.OID)
                 .AddClaim(ClaimTypes.Upn, TestConstants.UPN)
-                .AddClaim(ClaimConstants.Tid, TestConstants.TENANTID);
+                .AddClaim(ClaimConstants.Tid, TestConstants.TENANTID)
+                .AddClaim(ClaimTypes.Email, TestConstants.EMAIL);
         }
     }
 }
