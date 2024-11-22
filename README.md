@@ -28,7 +28,7 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.WithTenantId()
     .Enrich.WithObjectId()
     .Enrich.WithAppId()
-    .Enrich.WithCustomClaim("AnyExistingClaim")
+    .Enrich.WithCustomClaim("AnyExistingClaim") // Available from Serilog.Enrichers.Claims
     // ...other configuration...
     .CreateLogger();
 ```
@@ -36,13 +36,16 @@ Log.Logger = new LoggerConfiguration()
 
 ### Included enrichers
 
-The package includes:
+#### Available from Serilog.Enrichers.AzureClaims
 
  * `WithUpn()` - adds `UserPrincipalName` based on the ClaimType `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
  * `WithDisplayName()` - adds `DisplayName` based on the ClaimType `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` or `name` or `preferred_username`
  * `WithTenantId()` - adds `TenantId` based on the ClaimType `http://schemas.microsoft.com/identity/claims/tenantid` or `tid` 
  * `WithObjectId()` - adds `ObjectId` based on the ClaimType `http://schemas.microsoft.com/identity/claims/objectidentifier` or `oid`
  * `WithAppId()` - adds `AppId` based on the CLaimType `appid` or `azp` 
+
+#### Available from Serilog.Enrichers.Claims
+
  * `WithCustomClaim("AnyExistingClaim")` based on the claim you want to extract from the ClaimsPrincipal
 
 ## Installing into an ASP.NET Core Web Application
