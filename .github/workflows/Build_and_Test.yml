@@ -18,15 +18,15 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
       - name: Install dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build
+        run: dotnet build --no-restore
       - name: Test with the dotnet CLI
         run: dotnet test --logger "junit;LogFileName=coverage.trx" --no-restore --results-directory "output/test-results" /property:CollectCoverage=True /property:CoverletOutputFormat=opencover /property:CoverletOutput=/output/test-results/coverage.cobertura.xml --collect:"XPlat Code Coverage"
       - name: Save artifacts from tests
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: output/test-results

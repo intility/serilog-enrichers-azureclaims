@@ -17,3 +17,16 @@ updates:
       all:
         patterns:
           - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+        interval: "monthly"
+        time: "09:00"
+        timezone: "Europe/Oslo"
+    commit-message:
+      prefix: "ci:"
+    groups:
+      all:
+        patterns:
+          - "*"
