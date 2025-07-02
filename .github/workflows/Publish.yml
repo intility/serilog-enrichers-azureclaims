@@ -13,6 +13,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          flavor: |
+            latest=false
+          tags: |
+            type=semver,pattern={{version}}
+
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
@@ -22,7 +32,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Pack
-        run: dotnet pack --configuration Release --no-build --output output /property:Version="${{  github.ref_name }}"
+        run: dotnet pack --configuration Release --no-build --output output /property:Version="${{ steps.meta.outputs.version }}"
       - name: Push
         run: dotnet nuget push output/*.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_AUTH_TOKEN --skip-duplicate
         env:
