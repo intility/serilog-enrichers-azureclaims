@@ -26,7 +26,7 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test --logger "junit;LogFileName=coverage.trx" --no-restore --results-directory "output/test-results" /property:CollectCoverage=True /property:CoverletOutputFormat=opencover /property:CoverletOutput=/output/test-results/coverage.cobertura.xml --collect:"XPlat Code Coverage"
       - name: Save artifacts from tests
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: test-results
           path: output/test-results
