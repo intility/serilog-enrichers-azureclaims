@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web" Version="3.14.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
     <PackageReference Include="Serilog" Version="4.3.0" />
   </ItemGroup>
 
