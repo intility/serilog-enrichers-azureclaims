@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.0...v1.2.1) (2025-11-19)
+
+
+### Bug Fixes
+
+* add missing OIDC permissions for trusted publishing ([3f016df](https://github.com/intility/serilog-enrichers-azureclaims/commit/3f016dfc43f3438cd2f8e5dc7ed81d6164c61842))
+
 ## [1.2.0](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.1.4...v1.2.0) (2025-11-19)
 
 
