@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.1...v1.2.2) (2026-01-02)
+
+
+### Bug Fixes
+
+* bump dependencies for security updates ([b7e3d0d](https://github.com/intility/serilog-enrichers-azureclaims/commit/b7e3d0d1a27c807b86381736423f6db188943524))
+
 ## [1.2.1](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.0...v1.2.1) (2025-11-19)
 
 
