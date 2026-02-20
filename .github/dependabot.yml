@@ -1,32 +1,35 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
-  - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Check for updates to nuget packages
+  - package-ecosystem: "nuget"
+    directory: "/"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
+    labels:
+      - "dependencies"
+      - "nuget"
     commit-message:
-      prefix: "build:"
+      prefix: "fix:"
     groups:
-      all:
+      # Group all non-major updates together
+      minor-patch-updates:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
+  # Check for updates to GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-        interval: "monthly"
-        time: "09:00"
-        timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
+    labels:
+      - "dependencies"
+      - "github-actions"
     commit-message:
       prefix: "ci:"
-    groups:
-      all:
-        patterns:
-          - "*"
