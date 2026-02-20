@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.3](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.2...v1.2.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* Bump the minor-patch-updates group with 1 update ([84031c3](https://github.com/intility/serilog-enrichers-azureclaims/commit/84031c36a546d996b88877dcc06c0b832c540d0a))
+* harden GitHub Actions workflows and update dependabot config ([3740daf](https://github.com/intility/serilog-enrichers-azureclaims/commit/3740dafe6b8170176683fb69e9c2ceebe3edaf0a))
+
 ## [1.2.2](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.1...v1.2.2) (2026-01-02)
 
 
