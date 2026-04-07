@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.5](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.4...v1.2.5) (2026-04-07)
+
+
+### Bug Fixes
+
+* Bump coverlet.collector from 6.0.4 to 8.0.1 ([a76ed53](https://github.com/intility/serilog-enrichers-azureclaims/commit/a76ed53f93731f9cfdb23c6a26ca4f9c58a58cfd))
+* Bump the minor-patch-updates group with 1 update ([8ebb264](https://github.com/intility/serilog-enrichers-azureclaims/commit/8ebb264a87b28ac76cc60cbd9abc99aa8d7eca2a))
+
 ## [1.2.4](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.3...v1.2.4) (2026-03-02)
 
 
