@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.6](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.5...v1.2.6) (2026-04-28)
+
+
+### Bug Fixes
+
+* Bump coverlet.collector from 8.0.1 to 10.0.0 ([bd47824](https://github.com/intility/serilog-enrichers-azureclaims/commit/bd4782422752f26319355e544401640d5dc015af))
+* Bump Microsoft.Identity.Web and Microsoft.NET.Test.Sdk ([6533215](https://github.com/intility/serilog-enrichers-azureclaims/commit/65332151e3d366ba0c5561b1f7edca55864c0ae6))
+* **ci:** replace non-breaking spaces in dependabot.yml indentation ([02e0d50](https://github.com/intility/serilog-enrichers-azureclaims/commit/02e0d50ea800f8fed638241fa3d68ce0bc5fd34a))
+
 ## [1.2.5](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.4...v1.2.5) (2026-04-07)
 
 
