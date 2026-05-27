@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.6...v1.2.7) (2026-05-27)
+
+
+### Bug Fixes
+
+* Bump the minor-patch-updates group with 3 updates ([3e81078](https://github.com/intility/serilog-enrichers-azureclaims/commit/3e8107873f22046f31f135c18c0d472e6f53b463))
+
 ## [1.2.6](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.5...v1.2.6) (2026-04-28)
 
 
