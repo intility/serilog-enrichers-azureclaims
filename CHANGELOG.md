@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.9](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.8...v1.2.9) (2026-08-03)
+
+
+### Bug Fixes
+
+* bump missed group ([5b35ac5](https://github.com/intility/serilog-enrichers-azureclaims/commit/5b35ac582c752dd1002ba00db138d45150313743))
+* Bump NSubstitute from 5.3.0 to 6.0.0 ([9b63caf](https://github.com/intility/serilog-enrichers-azureclaims/commit/9b63caf3a129d401980ddb7557e0f31328e27886))
+
 ## [1.2.8](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.7...v1.2.8) (2026-06-29)
 
 
