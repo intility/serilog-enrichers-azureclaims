@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.10](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.9...v1.2.10) (2026-09-01)
+
+
+### Bug Fixes
+
+* Bump the minor-patch-updates group with 2 updates ([0678627](https://github.com/intility/serilog-enrichers-azureclaims/commit/0678627e392950f19c30acf5edc4c1b8c051242c))
+* Bump xunit.runner.visualstudio from 3.1.5 to 4.0.0 ([e265e4d](https://github.com/intility/serilog-enrichers-azureclaims/commit/e265e4d6bb83b244715b22d8651038a99fda75d2))
+
 ## [1.2.9](https://github.com/intility/serilog-enrichers-azureclaims/compare/v1.2.8...v1.2.9) (2026-08-03)
 
 
